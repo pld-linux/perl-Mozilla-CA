@@ -8,12 +8,14 @@
 Summary:	Mozilla::CA - Mozilla's CA cert bundle in PEM format
 Summary(pl.UTF-8):	Mozilla::CA - pakiet certyfikatów CA Mozilli w formacie PEM
 Name:		perl-Mozilla-CA
-Version:	20130114
+# although upsream has new releases, there is no benefit of that other than
+# feeling library is fresh, as we do not use certs provided by this module.
+Version:	20141217
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Mozilla/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	45a42082dbd68cf25869ceb2aa49d5b2
+# Source0-md5:	e0e5646886aeb3f71fb593f536295e2c
 Patch0:		system-ca-certificates.patch
 URL:		http://search.cpan.org/dist/Mozilla-CA/
 BuildRequires:	perl-devel >= 1:5.8.0
