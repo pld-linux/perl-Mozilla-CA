@@ -39,7 +39,7 @@ biblioteki oparte na OpenSSL.
 %patch0 -p1
 
 # Do not distribute Mozilla downloader, we take certificates from ca-certificates package
-rm mk-ca-bundle.pl
+%{__rm} mk-ca-bundle.pl
 sed -i '/^mk-ca-bundle.pl$/d' MANIFEST
 
 %build
@@ -62,5 +62,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Changes README
 %{perl_vendorlib}/Mozilla/CA.pm
-#%{perl_vendorlib}/Mozilla/CA
 %{_mandir}/man3/Mozilla::CA.3pm*
