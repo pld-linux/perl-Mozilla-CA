@@ -4,7 +4,6 @@
 
 %define		pdir	Mozilla
 %define		pnam	CA
-%include	/usr/lib/rpm/macros.perl
 Summary:	Mozilla::CA - Mozilla's CA cert bundle in PEM format
 Summary(pl.UTF-8):	Mozilla::CA - pakiet certyfikatów CA Mozilli w formacie PEM
 Name:		perl-Mozilla-CA
