@@ -1,46 +1,26 @@
-PLD Linux change (Elan Ruusamäe <glen@pld-linux.org>):
-use /etc/certs/ca-certificates.crt instead of /etc/pki/tls/certs/ca-bundle.crt
-
-From ae8af24d6d935b2824ad955aa9ea8cc557089c77 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Petr=20P=C3=ADsa=C5=99?= <ppisar@redhat.com>
-Date: Fri, 16 Sep 2011 10:33:54 +0200
-Subject: [PATCH] Redirect to ca-certificates bundle
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-This patch replaces Mozilla-CA certificate bundle with bundle
-delivered by ca-certificates RPM package used as single source of
-Mozilla certificate bundle.
-
-See <https://bugzilla.redhat.com/show_bug.cgi?id=738383> for more
-details.
-
-Signed-off-by: Petr Písař <ppisar@redhat.com>
----
- MANIFEST          | 1 -
- Makefile.PL       | 8 ++++++++
- lib/Mozilla/CA.pm | 8 +-------
- 3 files changed, 9 insertions(+), 8 deletions(-)
-
-diff --git a/MANIFEST b/MANIFEST
-index a88847b..6577ede 100644
---- a/MANIFEST
-+++ b/MANIFEST
-@@ -1,5 +1,4 @@
- lib/Mozilla/CA.pm
--lib/Mozilla/CA/cacert.pem
- Makefile.PL
- MANIFEST			This list of files
- README
-diff --git a/Makefile.PL b/Makefile.PL
-index 2b10474..57f2f07 100644
---- a/Makefile.PL
-+++ b/Makefile.PL
-@@ -40,3 +40,11 @@ BEGIN {
-         ExtUtils::MakeMaker::WriteMakefile(%arg);
-     };
+diff -ur Mozilla-CA-20240313.orig/lib/Mozilla/CA.pm Mozilla-CA-20240313/lib/Mozilla/CA.pm
+--- Mozilla-CA-20240313.orig/lib/Mozilla/CA.pm	2024-03-13 16:18:29.000000000 +0100
++++ Mozilla-CA-20240313/lib/Mozilla/CA.pm	2024-04-28 13:58:14.003894710 +0200
+@@ -5,11 +5,9 @@
+ our $VERSION = '20240313';
+ 
+ use File::Spec ();
+-use File::Basename qw(dirname);
+ 
+ sub SSL_ca_file {
+-    my $file = File::Spec->catfile(dirname(__FILE__), "CA", "cacert.pem");
+-    return File::Spec->rel2abs($file);
++    return File::Spec->catfile('/etc/certs/ca-certificates.crt');
  }
+ 
+ 1;
+diff -ur Mozilla-CA-20240313.orig/Makefile.PL Mozilla-CA-20240313/Makefile.PL
+--- Mozilla-CA-20240313.orig/Makefile.PL	2024-03-13 16:18:29.000000000 +0100
++++ Mozilla-CA-20240313/Makefile.PL	2024-04-28 13:59:39.417034408 +0200
+@@ -89,4 +89,12 @@
+   if $eumm_version < 6.51_03;
+ 
+ ExtUtils::MakeMaker::WriteMakefile(%MM_ARGS);
 +
 +package MY;
 +sub MY::libscan {
@@ -49,28 +29,15 @@ index 2b10474..57f2f07 100644
 +    if ($name =~ /cacert.pem\z/) { $name = '' };
 +    return $name;
 +}
-diff --git a/lib/Mozilla/CA.pm b/lib/Mozilla/CA.pm
-index 050a494..c9f7dc8 100644
---- a/lib/Mozilla/CA.pm
-+++ b/lib/Mozilla/CA.pm
-@@ -3,16 +3,10 @@ package Mozilla::CA;
- use strict;
- our $VERSION = '20141217';
- 
--use Cwd ();
- use File::Spec ();
--use File::Basename qw(dirname);
- 
- sub SSL_ca_file {
--    my $file = File::Spec->catfile(dirname(__FILE__), "CA", "cacert.pem");
--    if (!File::Spec->file_name_is_absolute($file)) {
--	$file = File::Spec->catfile(Cwd::cwd(), $file);
--    }
--    return $file;
-+    return File::Spec->catfile('/etc/certs/ca-certificates.crt');
- }
- 
- 1;
--- 
-1.9.3
-
+ ## END BOILERPLATE ###########################################################
+diff -ur Mozilla-CA-20240313.orig/MANIFEST Mozilla-CA-20240313/MANIFEST
+--- Mozilla-CA-20240313.orig/MANIFEST	2024-03-13 16:18:29.000000000 +0100
++++ Mozilla-CA-20240313/MANIFEST	2024-04-28 13:57:03.726956967 +0200
+@@ -1,7 +1,6 @@
+ .editorconfig
+ Changes
+ lib/Mozilla/CA.pm
+-lib/Mozilla/CA/cacert.pem
+ maint/cacert-diff
+ maint/get-tarball-name
+ maint/make-tarball
