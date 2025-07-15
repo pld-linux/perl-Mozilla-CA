@@ -35,7 +35,7 @@ biblioteki oparte na OpenSSL.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 # Do not distribute Mozilla downloader, we take certificates from ca-certificates package
 %{__rm} maint/mk-ca-bundle.pl
