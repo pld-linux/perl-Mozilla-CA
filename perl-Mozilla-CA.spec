@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests		# do not perform "make test"
+%bcond_without	tests	# unit tets
 
 %define		pdir	Mozilla
 %define		pnam	CA
@@ -9,16 +9,17 @@ Summary(pl.UTF-8):	Mozilla::CA - pakiet certyfikatów CA Mozilli w formacie PEM
 Name:		perl-Mozilla-CA
 # although upsream has new releases, there is no benefit of that other than
 # feeling library is fresh, as we do not use certs provided by this module.
-Version:	20240313
+Version:	20250602
 Release:	1
 License:	MPL v2.0
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/Mozilla/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	e4b76277c8a93ed894814e00db6d59ca
+Source0:	https://www.cpan.org/modules/by-module/Mozilla/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	c28848458e8ae2325e46b15a243f1918
 Patch0:		system-ca-certificates.patch
-URL:		http://search.cpan.org/dist/Mozilla-CA/
+URL:		https://metacpan.org/dist/Mozilla-CA
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.745
 Requires:	ca-certificates
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

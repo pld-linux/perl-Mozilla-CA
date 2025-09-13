@@ -1,8 +1,7 @@
-diff -ur Mozilla-CA-20240313.orig/lib/Mozilla/CA.pm Mozilla-CA-20240313/lib/Mozilla/CA.pm
---- Mozilla-CA-20240313.orig/lib/Mozilla/CA.pm	2024-03-13 16:18:29.000000000 +0100
-+++ Mozilla-CA-20240313/lib/Mozilla/CA.pm	2024-04-28 13:58:14.003894710 +0200
-@@ -5,11 +5,9 @@
- our $VERSION = '20240313';
+--- Mozilla-CA-20250602/lib/Mozilla/CA.pm.orig	2025-06-02 19:38:53.000000000 +0200
++++ Mozilla-CA-20250602/lib/Mozilla/CA.pm	2025-09-13 11:31:15.082934448 +0200
+@@ -5,11 +5,9 @@ use warnings;
+ our $VERSION = '20250602';
  
  use File::Spec ();
 -use File::Basename qw(dirname);
