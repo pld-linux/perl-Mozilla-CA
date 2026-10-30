@@ -1,7 +1,7 @@
---- Mozilla-CA-20250602/lib/Mozilla/CA.pm.orig	2025-06-02 19:38:53.000000000 +0200
-+++ Mozilla-CA-20250602/lib/Mozilla/CA.pm	2025-09-13 11:31:15.082934448 +0200
-@@ -5,11 +5,9 @@ use warnings;
- our $VERSION = '20250602';
+--- Mozilla-CA-20261020/lib/Mozilla/CA.pm.orig	2026-10-20 21:45:34.000000000 +0200
++++ Mozilla-CA-20261020/lib/Mozilla/CA.pm	2026-10-30 08:33:33.411707895 +0100
+@@ -5,11 +5,9 @@
+ our $VERSION = '20261020';
  
  use File::Spec ();
 -use File::Basename qw(dirname);
@@ -13,9 +13,8 @@
  }
  
  1;
-diff -ur Mozilla-CA-20240313.orig/Makefile.PL Mozilla-CA-20240313/Makefile.PL
---- Mozilla-CA-20240313.orig/Makefile.PL	2024-03-13 16:18:29.000000000 +0100
-+++ Mozilla-CA-20240313/Makefile.PL	2024-04-28 13:59:39.417034408 +0200
+--- Mozilla-CA-20261020/Makefile.PL.orig	2026-10-20 21:45:34.000000000 +0200
++++ Mozilla-CA-20261020/Makefile.PL	2026-10-30 08:33:33.419289590 +0100
 @@ -89,4 +89,12 @@
    if $eumm_version < 6.51_03;
  
@@ -29,14 +28,13 @@ diff -ur Mozilla-CA-20240313.orig/Makefile.PL Mozilla-CA-20240313/Makefile.PL
 +    return $name;
 +}
  ## END BOILERPLATE ###########################################################
-diff -ur Mozilla-CA-20240313.orig/MANIFEST Mozilla-CA-20240313/MANIFEST
---- Mozilla-CA-20240313.orig/MANIFEST	2024-03-13 16:18:29.000000000 +0100
-+++ Mozilla-CA-20240313/MANIFEST	2024-04-28 13:57:03.726956967 +0200
+--- Mozilla-CA-20261020/MANIFEST.orig	2026-10-20 21:45:34.000000000 +0200
++++ Mozilla-CA-20261020/MANIFEST	2026-10-30 08:33:33.415808589 +0100
 @@ -1,7 +1,6 @@
  .editorconfig
  Changes
  lib/Mozilla/CA.pm
 -lib/Mozilla/CA/cacert.pem
  maint/cacert-diff
+ maint/denylist.pl
  maint/get-tarball-name
- maint/make-tarball
